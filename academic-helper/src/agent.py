@@ -214,9 +214,11 @@ class Agent:
                                "output": json.dumps(result, ensure_ascii=False)})
         raise RuntimeError("Модель превысила лимит вызовов инструментов")
 
-    def ask(self, question):
+    def ask(self, question, channel=None):
         if not isinstance(question, str) or not question.strip() or len(question) > 2000:
             raise ValueError("Вопрос должен содержать от 1 до 2000 символов")
+        if channel not in (None, 'telegram'):
+            raise ValueError('Неизвестный канал')
         start = time.perf_counter()
         names, evidence, status = [], [], "ok"
         generated, accepted = None, None
@@ -244,7 +246,7 @@ class Agent:
         latency_ms = (time.perf_counter() - start) * 1000
         with sqlite3.connect(self.tools.db_path) as con:
             con.execute("INSERT INTO requests(created_at,mode,tool_names,question,answer,latency_ms,status) VALUES (?,?,?,?,?,?,?)",
-                (datetime.now(timezone.utc).isoformat(), self.mode, json.dumps(names), question, answer, latency_ms, status))
+                (datetime.now(timezone.utc).isoformat(), ('telegram:'+self.mode) if channel else self.mode, json.dumps(names), question, answer, latency_ms, status))
         return {"answer": answer, "tools": names, "evidence": evidence, "latency_ms": latency_ms,
                 "status": status, "mode": self.mode, "raw_generated": generated,
                 "generation_accepted": accepted}
