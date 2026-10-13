@@ -1,0 +1,10 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.env
+.DS_Store
+data/education.sqlite
+data/education.sqlite-*
+data/models/
