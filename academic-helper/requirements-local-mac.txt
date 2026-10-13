@@ -1,0 +1,3 @@
+# Дополнительный локальный backend для macOS Apple Silicon.
+# Сначала установите основной requirements.txt.
+mlx-lm==0.32.0

@@ -1,0 +1,324 @@
+{
+  "seed": 42,
+  "quality": {
+    "is_synthetic": true,
+    "country_context": "Россия",
+    "scale": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "as_of": "2026-03-29",
+    "sources": [
+      {
+        "id": "gradebook",
+        "title": "Синтетическая ведомость оценок",
+        "url": "local:data/raw/gradebook.csv",
+        "sha256": "9ccbbcb15e21755bc05a427262da66f7e99043ec1f27a8be4628ccff7c83a456",
+        "registered_at": "2026-10-13T11:02:38.766645+00:00"
+      },
+      {
+        "id": "activity",
+        "title": "Синтетический журнал занятий и работ",
+        "url": "local:data/raw/activity_log.csv",
+        "sha256": "27a833d9b98b73296115024e84551accc1f638606bf4a78c464eebb6aa70283f",
+        "registered_at": "2026-10-13T11:02:38.766645+00:00"
+      },
+      {
+        "id": "project",
+        "title": "Учебный регламент вымышленного вуза",
+        "url": "local:data/knowledge/notes.json",
+        "sha256": "17b71930907848153cd5dd16ad829d0895c957430e60a93e26777759e96d6df4",
+        "registered_at": "2026-10-13T11:02:38.766645+00:00"
+      },
+      {
+        "id": "rudn",
+        "title": "Официальный справочник РУДН о системе оценивания",
+        "url": "https://handbook.rudn.ru/learn/rating.html",
+        "sha256": "ebacf68105843cf268f939d599114e1bfe55384056f03094886d73f71347b9bc",
+        "registered_at": "2026-10-13T11:02:38.766645+00:00"
+      }
+    ],
+    "audits": {
+      "gradebook": {
+        "input_rows": 1085,
+        "missing_cells": 3,
+        "rejected_rows": 0,
+        "duplicate_rows": 5,
+        "output_rows": 1080
+      },
+      "activity": {
+        "input_rows": 43212,
+        "rejected_rows": 0,
+        "duplicate_rows": 12,
+        "future_events_excluded": 21600,
+        "output_rows": 21600,
+        "as_of": "2026-03-29"
+      }
+    },
+    "records": 1080,
+    "profile_groups": 360,
+    "shared_profile_groups": 360,
+    "risk_count": 381,
+    "activity_records": 21600
+  },
+  "features": [
+    "control_1",
+    "control_2",
+    "attendance_rate",
+    "lab_completion",
+    "late_share",
+    "course"
+  ],
+  "excluded": [
+    "final_grade",
+    "risk_target",
+    "events_after_as_of",
+    "generator_latent_variables"
+  ],
+  "split": {
+    "train": {
+      "records": 648,
+      "groups": 216,
+      "risk_count": 237,
+      "risk_share": 0.36574074074074076
+    },
+    "validation": {
+      "records": 216,
+      "groups": 72,
+      "risk_count": 79,
+      "risk_share": 0.36574074074074076
+    },
+    "test": {
+      "records": 216,
+      "groups": 72,
+      "risk_count": 65,
+      "risk_share": 0.30092592592592593
+    }
+  },
+  "cv": [
+    {
+      "name": "logistic",
+      "best_params": {
+        "model__C": 1.0
+      },
+      "cv_average_precision": 0.7968670444091652,
+      "validation": {
+        "n": 216,
+        "positives": 79,
+        "threshold": 0.5,
+        "accuracy": 0.7175925925925926,
+        "precision": 0.5918367346938775,
+        "recall": 0.7341772151898734,
+        "f1": 0.655367231638418,
+        "roc_auc": 0.7838861683451909,
+        "average_precision": 0.6891036332916173,
+        "brier": 0.19599125129303066,
+        "confusion_matrix": [
+          [
+            97,
+            40
+          ],
+          [
+            21,
+            58
+          ]
+        ]
+      }
+    },
+    {
+      "name": "random_forest",
+      "best_params": {
+        "model__max_depth": 4,
+        "model__min_samples_leaf": 5
+      },
+      "cv_average_precision": 0.7818931122077338,
+      "validation": {
+        "n": 216,
+        "positives": 79,
+        "threshold": 0.5,
+        "accuracy": 0.6990740740740741,
+        "precision": 0.5795454545454546,
+        "recall": 0.6455696202531646,
+        "f1": 0.6107784431137725,
+        "roc_auc": 0.7752933567402754,
+        "average_precision": 0.6904782873088551,
+        "brier": 0.193026066260598,
+        "confusion_matrix": [
+          [
+            100,
+            37
+          ],
+          [
+            28,
+            51
+          ]
+        ]
+      }
+    }
+  ],
+  "selected_model": "logistic",
+  "threshold": 0.44999999999999996,
+  "validation_selected": {
+    "n": 216,
+    "positives": 79,
+    "threshold": 0.44999999999999996,
+    "accuracy": 0.7175925925925926,
+    "precision": 0.5865384615384616,
+    "recall": 0.7721518987341772,
+    "f1": 0.6666666666666666,
+    "roc_auc": 0.7838861683451909,
+    "average_precision": 0.6891036332916173,
+    "brier": 0.19599125129303066,
+    "confusion_matrix": [
+      [
+        94,
+        43
+      ],
+      [
+        18,
+        61
+      ]
+    ]
+  },
+  "test": {
+    "dummy_prior": {
+      "n": 216,
+      "positives": 65,
+      "threshold": 0.5,
+      "accuracy": 0.6990740740740741,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "roc_auc": 0.5,
+      "average_precision": 0.30092592592592593,
+      "brier": 0.21457047325102885,
+      "confusion_matrix": [
+        [
+          151,
+          0
+        ],
+        [
+          65,
+          0
+        ]
+      ]
+    },
+    "logistic": {
+      "n": 216,
+      "positives": 65,
+      "threshold": 0.44999999999999996,
+      "accuracy": 0.7222222222222222,
+      "precision": 0.5252525252525253,
+      "recall": 0.8,
+      "f1": 0.6341463414634146,
+      "roc_auc": 0.816097809475293,
+      "average_precision": 0.6416430360937347,
+      "brier": 0.17254540365636342,
+      "confusion_matrix": [
+        [
+          104,
+          47
+        ],
+        [
+          13,
+          52
+        ]
+      ]
+    },
+    "random_forest": {
+      "n": 216,
+      "positives": 65,
+      "threshold": 0.5,
+      "accuracy": 0.7731481481481481,
+      "precision": 0.6025641025641025,
+      "recall": 0.7230769230769231,
+      "f1": 0.6573426573426573,
+      "roc_auc": 0.8026490066225166,
+      "average_precision": 0.6421478065945453,
+      "brier": 0.17410083970334664,
+      "confusion_matrix": [
+        [
+          120,
+          31
+        ],
+        [
+          18,
+          47
+        ]
+      ]
+    }
+  },
+  "f1_group_bootstrap_95ci": [
+    0.5363997879109226,
+    0.7223015774437958
+  ],
+  "course_statistics": [
+    {
+      "course": "bd",
+      "records": 360,
+      "mean_grade": 3.0722222222222224,
+      "sd_grade": 0.995983888379467,
+      "median_grade": 3.0,
+      "risk_count": 126,
+      "risk_share": 0.35,
+      "mean_attendance": 0.7963541666666667,
+      "mean_lab_completion": 0.7513888888888889
+    },
+    {
+      "course": "pr",
+      "records": 360,
+      "mean_grade": 2.95,
+      "sd_grade": 0.9574513522482514,
+      "median_grade": 3.0,
+      "risk_count": 144,
+      "risk_share": 0.4,
+      "mean_attendance": 0.7887152777777777,
+      "mean_lab_completion": 0.7277777777777777
+    },
+    {
+      "course": "ud",
+      "records": 360,
+      "mean_grade": 3.158333333333333,
+      "sd_grade": 0.9929767295940627,
+      "median_grade": 3.0,
+      "risk_count": 111,
+      "risk_share": 0.30833333333333335,
+      "mean_attendance": 0.7907986111111112,
+      "mean_lab_completion": 0.7368055555555556
+    }
+  ],
+  "feature_importance": [
+    {
+      "feature": "control_2",
+      "importance": 0.142559336457346,
+      "sd": 0.0481074908987664
+    },
+    {
+      "feature": "control_1",
+      "importance": 0.12902514953080682,
+      "sd": 0.04251982842680838
+    },
+    {
+      "feature": "lab_completion",
+      "importance": 0.022372197986894903,
+      "sd": 0.008931894949556752
+    },
+    {
+      "feature": "course",
+      "importance": 0.008141602134810088,
+      "sd": 0.008712592841688094
+    },
+    {
+      "feature": "late_share",
+      "importance": 0.0023795483383896587,
+      "sd": 0.007686574459139151
+    },
+    {
+      "feature": "attendance_rate",
+      "importance": -0.0030753550068197133,
+      "sd": 0.02036542169290323
+    }
+  ]
+}

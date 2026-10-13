@@ -1,0 +1,8 @@
+pandas==2.2.3
+numpy==2.3.5
+scikit-learn==1.9.1
+matplotlib==3.11.2
+streamlit==1.65.0
+joblib==1.6.0
+openai==3.29.0
+pytest==9.1.1

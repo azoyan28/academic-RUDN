@@ -1,0 +1,63 @@
+{
+  "is_synthetic": true,
+  "country_context": "Россия",
+  "scale": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "as_of": "2026-03-29",
+  "sources": [
+    {
+      "id": "gradebook",
+      "title": "Синтетическая ведомость оценок",
+      "url": "local:data/raw/gradebook.csv",
+      "sha256": "9ccbbcb15e21755bc05a427262da66f7e99043ec1f27a8be4628ccff7c83a456",
+      "registered_at": "2026-10-13T11:02:38.766645+00:00"
+    },
+    {
+      "id": "activity",
+      "title": "Синтетический журнал занятий и работ",
+      "url": "local:data/raw/activity_log.csv",
+      "sha256": "27a833d9b98b73296115024e84551accc1f638606bf4a78c464eebb6aa70283f",
+      "registered_at": "2026-10-13T11:02:38.766645+00:00"
+    },
+    {
+      "id": "project",
+      "title": "Учебный регламент вымышленного вуза",
+      "url": "local:data/knowledge/notes.json",
+      "sha256": "17b71930907848153cd5dd16ad829d0895c957430e60a93e26777759e96d6df4",
+      "registered_at": "2026-10-13T11:02:38.766645+00:00"
+    },
+    {
+      "id": "rudn",
+      "title": "Официальный справочник РУДН о системе оценивания",
+      "url": "https://handbook.rudn.ru/learn/rating.html",
+      "sha256": "ebacf68105843cf268f939d599114e1bfe55384056f03094886d73f71347b9bc",
+      "registered_at": "2026-10-13T11:02:38.766645+00:00"
+    }
+  ],
+  "audits": {
+    "gradebook": {
+      "input_rows": 1085,
+      "missing_cells": 3,
+      "rejected_rows": 0,
+      "duplicate_rows": 5,
+      "output_rows": 1080
+    },
+    "activity": {
+      "input_rows": 43212,
+      "rejected_rows": 0,
+      "duplicate_rows": 12,
+      "future_events_excluded": 21600,
+      "output_rows": 21600,
+      "as_of": "2026-03-29"
+    }
+  },
+  "records": 1080,
+  "profile_groups": 360,
+  "shared_profile_groups": 360,
+  "risk_count": 381,
+  "activity_records": 21600
+}

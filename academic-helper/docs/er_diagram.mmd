@@ -1,0 +1,63 @@
+erDiagram
+    SOURCES ||--o{ ENROLLMENTS : provenance
+    SOURCES ||--o{ ACTIVITIES : provenance
+    SOURCES ||--o{ DOCUMENTS : provenance
+    STUDENTS ||--o{ ENROLLMENTS : studies
+    ENROLLMENTS ||--o{ ACTIVITIES : events
+    SOURCES {
+        TEXT source_id PK
+        TEXT title
+        TEXT url
+        TEXT sha256
+        TEXT registered_at
+    }
+    STUDENTS {
+        TEXT entity_key PK
+        TEXT group_code
+    }
+    ENROLLMENTS {
+        TEXT record_id PK
+        TEXT entity_key FK
+        TEXT course
+        TEXT source_id FK
+        INTEGER source_row
+        REAL control_1
+        REAL control_2
+        INTEGER final_grade
+        INTEGER risk_target
+        TEXT as_of
+        TEXT features_json
+    }
+    ACTIVITIES {
+        TEXT event_id PK
+        TEXT record_id FK
+        TEXT source_id FK
+        TEXT event_date
+        TEXT event_type
+        REAL attended
+        REAL submitted
+        REAL late
+    }
+    DOCUMENTS {
+        TEXT document_id PK
+        TEXT source_id FK
+        TEXT title
+        TEXT text
+    }
+    EXPERIMENTS {
+        INTEGER experiment_id PK
+        TEXT created_at
+        TEXT model_name
+        TEXT split_name
+        TEXT metrics_json
+    }
+    REQUESTS {
+        INTEGER request_id PK
+        TEXT created_at
+        TEXT mode
+        TEXT tool_names
+        TEXT question
+        TEXT answer
+        REAL latency_ms
+        TEXT status
+    }
